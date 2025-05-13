@@ -1,0 +1,8 @@
+streamlit
+pandas
+matplotlib
+seaborn
+langchain
+langchain-openai
+faiss-cpu
+openai
