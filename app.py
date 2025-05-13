@@ -11,7 +11,7 @@ import os
 
 st.set_page_config(page_title=InsightForge BI Assistant, layout=wide)
 
-st.title(📊 InsightForge – AI-Powered Business Intelligence Assistant)
+st.title("📊 InsightForge – AI-Powered Business Intelligence Assistant")
 
 # Sidebar – Upload CSV
 uploaded_file = st.sidebar.file_uploader(Upload Sales Data CSV, type=csv)
