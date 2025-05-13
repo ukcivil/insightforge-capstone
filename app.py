@@ -47,9 +47,9 @@ if uploaded_file:
     user_query = st.text_input("💬 Ask a business question:")
 
     if user_query:
-        result = qa_chain.run(user_query)
+        result = qa_chain.invoke({"query": user_query})
         st.subheader("🧠 AI Insight")
-        st.write(result)
+        st.write(result["result"])
 
         # Visual example for Widget A trend
         if "widget a" in user_query.lower() and "sales trend" in user_query.lower():
