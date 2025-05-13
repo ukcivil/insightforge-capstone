@@ -46,7 +46,6 @@ Customer Age: {doc['customer_age']}
 Gender: {doc['gender']}
 Satisfaction: {doc['satisfaction']}
 """
-
         documents.append(Document(page_content=text))
 
     embeddings = OpenAIEmbeddings()
@@ -62,12 +61,13 @@ Satisfaction: {doc['satisfaction']}
         result = qa_chain.invoke({"query": user_query})
         st.subheader("🧠 AI Insight")
         st.write(result["result"])
-  # Save to interaction log
-    with open("chat_log.txt", "a") as log_file:
-    log_file.write(f"Time: {datetime.now().isoformat()}\n")
-    log_file.write(f"User Query: {user_query}\n")
-    log_file.write(f"AI Response: {result['result']}\n")
-    log_file.write("-" * 50 + "\n")      
+
+        # Save to interaction log
+        with open("chat_log.txt", "a") as log_file:
+            log_file.write(f"Time: {datetime.now().isoformat()}\n")
+            log_file.write(f"User Query: {user_query}\n")
+            log_file.write(f"AI Response: {result['result']}\n")
+            log_file.write("-" * 50 + "\n")
 
         # Visual example for Widget A trend
         if "widget a" in user_query.lower() and "sales trend" in user_query.lower():
@@ -80,8 +80,11 @@ Satisfaction: {doc['satisfaction']}
             ax.set_title('Sales Trend for Widget A')
             ax.tick_params(axis='x', rotation=45)
             st.pyplot(fig)
+
 else:
     st.warning("Please upload a CSV file to begin.")
+
+# Optional download button for log
 if os.path.exists("chat_log.txt"):
     with open("chat_log.txt", "r") as log_file:
         st.download_button("📄 Download Interaction Log", log_file, file_name="chat_log.txt")
