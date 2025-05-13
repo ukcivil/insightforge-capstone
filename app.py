@@ -18,18 +18,21 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 st.set_page_config(page_title="InsightForge BI Assistant", layout="wide")
 st.title("📊 InsightForge – AI-Powered Business Intelligence Assistant")
 
-# 📁 Upload CSV file
+# 📁 Upload CSV
 uploaded_file = st.sidebar.file_uploader("Upload Sales Data CSV", type="csv")
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     st.success("✅ Data Loaded")
 
-    # 📚 Prepare records for embedding
+    # 🧱 Prepare base documents from raw data
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['Month'] = df['Date'].dt.to_period('M').astype(str)
+
     documents = []
     for _, row in df.iterrows():
         doc = {
-            "date": pd.to_datetime(row['Date']).strftime('%Y-%m-%d'),
+            "date": row['Date'].strftime('%Y-%m-%d'),
             "product": row['Product'],
             "region": row['Region'],
             "sales": row['Sales'],
@@ -50,27 +53,41 @@ Satisfaction: {doc['satisfaction']}
 """
         documents.append(Document(page_content=text))
 
-    # ➕ Add summaries for better context retrieval
-    df['Date'] = pd.to_datetime(df['Date'])
-    df['Month'] = df['Date'].dt.to_period('M').astype(str)
+    # ➕ Add summaries for full insight coverage
 
-    for month, total in df.groupby('Month')['Sales'].sum().items():
-        documents.append(Document(page_content=f"Monthly Summary - {month}: Total Sales = {total}"))
-
-    for _, row in df.groupby(['Product', 'Region'])['Sales'].sum().reset_index().iterrows():
+    # Product by region
+    prod_region = df.groupby(['Product', 'Region'])['Sales'].sum().reset_index()
+    for _, row in prod_region.iterrows():
         documents.append(Document(page_content=f"Product: {row['Product']}, Region: {row['Region']}, Total Sales: {row['Sales']}"))
 
-    for _, row in df.groupby('Product')['Customer_Satisfaction'].mean().reset_index().iterrows():
+    # Product by month
+    prod_month = df.groupby(['Product', 'Month'])['Sales'].sum().reset_index()
+    for _, row in prod_month.iterrows():
+        documents.append(Document(page_content=f"Product: {row['Product']} had {row['Sales']} sales in {row['Month']}"))
+
+    # Product satisfaction
+    prod_sat = df.groupby('Product')['Customer_Satisfaction'].mean().reset_index()
+    for _, row in prod_sat.iterrows():
         documents.append(Document(page_content=f"Product: {row['Product']}, Avg Satisfaction: {round(row['Customer_Satisfaction'], 2)}"))
 
-    # 🔗 RAG System Setup
+    # Region age and sales summary
+    region_agg = df.groupby('Region').agg({'Customer_Age': 'mean', 'Sales': 'sum'}).reset_index()
+    for _, row in region_agg.iterrows():
+        documents.append(Document(page_content=f"Region: {row['Region']}, Avg Age: {round(row['Customer_Age'], 1)}, Total Sales: {row['Sales']}"))
+
+    # Monthly total sales
+    monthly = df.groupby('Month')['Sales'].sum().reset_index()
+    for _, row in monthly.iterrows():
+        documents.append(Document(page_content=f"Monthly Summary - {row['Month']}: Total Sales = {row['Sales']}"))
+
+    # 🔗 RAG system
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(documents, embeddings)
     retriever = vectorstore.as_retriever()
     llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
 
-    # 💬 Prompt input
+    # 💬 Input query
     user_query = st.text_input("💬 Ask a business question:")
 
     if user_query:
@@ -85,10 +102,9 @@ Satisfaction: {doc['satisfaction']}
             log_file.write(f"AI Response: {result['result']}\n")
             log_file.write("-" * 50 + "\n")
 
-        # 🎯 Essential Visuals Triggered by Smart Keywords
+        # 📊 Minimal visual triggers
         q = user_query.lower()
 
-        # 📈 Show sales trend if prompt involves time/seasonality
         if "sales trend" in q or "monthly sales" in q or "over time" in q:
             monthly_sales = df.groupby('Month')['Sales'].sum().reset_index()
             fig, ax = plt.subplots(figsize=(10, 4))
@@ -97,25 +113,23 @@ Satisfaction: {doc['satisfaction']}
             ax.tick_params(axis='x', rotation=45)
             st.pyplot(fig)
 
-        # 📊 Show bar chart of sales by product
-        elif "sales by product" in q or "compare products" in q or "product performance" in q:
+        elif "sales by product" in q or "compare products" in q:
             fig, ax = plt.subplots()
             sns.barplot(data=df, x='Product', y='Sales', estimator=sum, ax=ax)
             ax.set_title('Total Sales by Product')
             st.pyplot(fig)
 
-        # 😊 Show satisfaction distribution if query involves satisfaction scores
-        elif "satisfaction distribution" in q or "customer satisfaction" in q:
+        elif "satisfaction" in q and "distribution" in q:
             fig, ax = plt.subplots()
             sns.histplot(df['Customer_Satisfaction'], bins=20, kde=True, ax=ax)
             ax.set_title('Customer Satisfaction Distribution')
             st.pyplot(fig)
 
-# ⚠️ Reminder if file not uploaded
+# ⚠️ Prompt to upload file
 else:
     st.warning("Please upload a CSV file to begin.")
 
-# 📄 Download logged interaction history
+# 📄 Download interaction log
 if os.path.exists("chat_log.txt"):
     with open("chat_log.txt", "r") as log_file:
         st.download_button("📄 Download Interaction Log", log_file, file_name="chat_log.txt")
