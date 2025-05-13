@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from datetime import datetime
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
@@ -61,6 +62,12 @@ Satisfaction: {doc['satisfaction']}
         result = qa_chain.invoke({"query": user_query})
         st.subheader("🧠 AI Insight")
         st.write(result["result"])
+  # Save to interaction log
+    with open("chat_log.txt", "a") as log_file:
+    log_file.write(f"Time: {datetime.now().isoformat()}\n")
+    log_file.write(f"User Query: {user_query}\n")
+    log_file.write(f"AI Response: {result['result']}\n")
+    log_file.write("-" * 50 + "\n")      
 
         # Visual example for Widget A trend
         if "widget a" in user_query.lower() and "sales trend" in user_query.lower():
@@ -75,3 +82,6 @@ Satisfaction: {doc['satisfaction']}
             st.pyplot(fig)
 else:
     st.warning("Please upload a CSV file to begin.")
+if os.path.exists("chat_log.txt"):
+    with open("chat_log.txt", "r") as log_file:
+        st.download_button("📄 Download Interaction Log", log_file, file_name="chat_log.txt")
