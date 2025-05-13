@@ -34,7 +34,18 @@ if uploaded_file:
             "gender": row['Customer_Gender'],
             "satisfaction": round(row['Customer_Satisfaction'], 2)
         }
-        text = ", ".join([f"{k}: {v}" for k, v in doc.items()])
+        text = f"""
+PRODUCT REPORT
+
+Date: {doc['date']}
+Product: {doc['product']}
+Region: {doc['region']}
+Sales: {doc['sales']}
+Customer Age: {doc['customer_age']}
+Gender: {doc['gender']}
+Satisfaction: {doc['satisfaction']}
+"""
+
         documents.append(Document(page_content=text))
 
     embeddings = OpenAIEmbeddings()
