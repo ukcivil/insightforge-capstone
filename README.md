@@ -1,82 +1,96 @@
 #  InsightForge – AI-Powered Business Intelligence Assistant
 
-InsightForge is a Streamlit-based capstone project that enables non-technical users to derive actionable insights from business data using natural language. Powered by OpenAI's GPT and LangChain’s Retrieval-Augmented Generation (RAG), this tool allows interactive exploration of sales trends, product performance, customer satisfaction, and demographic insights.
+**InsightForge** is a simple tool built with **Streamlit** that helps you explore your sales data using **AI**. It uses **ChatGPT (GPT-3.5)** and **LangChain** to answer your questions, create summaries, and show charts — all from a CSV file you upload.
+
+You can ask questions like:
+- “How are sales trending over time?”
+- “Which product performs best?”
+- “What’s the average customer satisfaction by region?”
 
 ---
 
-##  Features
+##  What This App Can Do
 
-- Upload structured CSV sales data
-- Ask business questions in natural language
-- Get AI-generated answers powered by GPT-3.5
-- View relevant charts for trends, satisfaction, and product breakdowns
-- Download chat interaction logs for audit or review
-
----
-
-##  File Overview
-
-| File               | Description                                     |
-|--------------------|-------------------------------------------------|
-| `app.py`           | Main Streamlit application                      |
-| `sales_data.csv`   | Sample sales dataset used for testing           |
-| `requirements.txt` | Python package dependencies                     |
-| `README.md`        | This file – project overview and usage guide    |
-| `.gitignore`       | Excludes temp/log files from version control    |
-| `.devcontainer/`   | (Optional) VS Code container config             |
+- Upload a sales CSV file
+- Ask questions in plain English
+- Get helpful answers powered by AI
+- See useful charts when relevant
+- Download a log of your questions and answers
 
 ---
 
-##  Setup Instructions
+##  What’s in This Project
 
-### 1. Clone the Repository
+| File Name          | What It Does                                      |
+|--------------------|---------------------------------------------------|
+| `app.py`           | The main app code (what Streamlit runs)          |
+| `sales_data.csv`   | Sample data for testing the app                   |
+| `requirements.txt` | List of packages you need to install              |
+| `README.md`        | This file – explains the project and how to use it|
+| `.gitignore`       | Tells Git what files to skip (like logs)          |
+| `.devcontainer/`   | Extra config for VS Code (optional)               |
+
+---
+
+##  How to Use It
+
+### 1. Clone This Repository
+
+Open your terminal and type:
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/insightforge-capstone.git
 cd insightforge-capstone
 ```
 
-### 2. Install Requirements
+### 2. Install the Required Packages
 
-Use a virtual environment or run:
+Ensure you have Python installed, then run:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Launch the App
+### 3. Run the App
+
+Start the app by typing:
 
 ```bash
 streamlit run app.py
 ```
 
----
-
-##  Example Questions to Try
-
-- Compare Widget A and Widget B sales by region
-- Show the monthly sales trend over time
-- Which product has the highest customer satisfaction?
-- How do customer ages vary by region?
+A web page will open where you can upload a CSV and start asking questions.
 
 ---
 
-##  Downloadable Logs
+##  Try Asking Questions or Providing Statements Like:
 
-Each user interaction is logged to `chat_log.txt`, which can be downloaded via the app interface.
+- Compare sales between Widget A and Widget B
+- Show the sales trend over the months provided
+- What is the average customer age by region?
+- Which product has the best satisfaction ratings?
 
 ---
 
-##  Submission Info
+##  Interaction Log
 
-This project meets all capstone requirements for:
+Every time you ask a question, it gets saved in a file called `chat_log.txt`. You can download it directly from within the app.
 
-- Data insight generation
+---
+
+##  What Tools Were Used
+
+This app was built with:
+- **OpenAI GPT-3.5** – helps with proper answers
+- **LangChain** – allows searching through the data
+- **Streamlit** – allows for a web interface
+- **Pandas / Seaborn / Matplotlib** – for charts and data handling
+
+---
+
+##  Items that are required based on the problem statement
+- Generates Insight into the Available Data
 - Prompt-based natural language interface
-- Visualizations
-- Deployment-ready business tool
-
-Built using:  
-OpenAI · LangChain · Streamlit · Matplotlib · Seaborn
-
+- Provides Visualizations when relevant
+- Easy to share
 ---
