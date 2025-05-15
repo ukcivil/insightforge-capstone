@@ -99,7 +99,7 @@ After testing, the code was moved into a standalone script (`app.py`) and pushed
 
 ---
 
-### 🌐 Step 3: Deployed with Streamlit Cloud to Allow for creating a Web interface that anyone can use.
+### Step 3: Deployed with Streamlit Cloud to Allow for creating a Web interface that anyone can use.
 
 1. The GitHub repo was connected to [Streamlit Cloud](https://streamlit.io/cloud)
 2. Streamlit pulled my code stored in the `app.py` file and required libraries from `requirements.txt`
