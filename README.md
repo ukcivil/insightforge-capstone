@@ -123,9 +123,50 @@ This app was built with:
 
 ---
 
-##  Items that are required based on the problem statement
+##  Items that are included that meet the requirements based on the problem statement
 - Generates Insight into the Available Data
 - Prompt-based natural language interface
 - Provides Visualizations when relevant
 - Easy to share
+---
+## 🧠 User Experience Features
+
+### 💡 Suggested Questions Panel
+To help users interact effectively with the BI assistant, the app includes a collapsible **Suggested Questions** panel. It displays example queries based on real summaries and insights generated from the dataset.
+
+**Topics include:**
+- Sales trends (e.g., “Was there a seasonal spike in 2024?”)
+- Product performance (e.g., “Compare Widget A and Widget B sales by region.”)
+- Regional demographics and satisfaction scores
+
+This feature helps guide users toward supported queries, improving success rates and clarity.
+
+---
+
+### 🔒 Inaccuracy Prevention Measures
+Several built-in safeguards were implemented to prevent the app from returning misleading or unsupported answers:
+
+#### ⚠️ No Data Retrieved Warning
+If the system retrieves no relevant data, the app shows a warning:
+> “⚠️ I couldn’t find enough data to confidently answer that question.”
+
+This prevents the LLM from guessing or hallucinating information.
+
+#### 🚫 Unsupported Query Detection
+The app checks queries against a list of known unsupported patterns like:
+- “Average sales per transaction”
+- “Total transactions in 2023”
+- “Most recent sale”
+- “Top 5 products”
+
+If a match is found, users receive:
+> “🚫 This type of question may not be fully supported by the dataset or summaries.”
+
+#### 🔍 Source Data Transparency
+An optional toggle lets users view the actual data chunks the AI used to form its response. This adds transparency and trust to the insights being generated.
+
+---
+
+These features combine to deliver a guided and accurate experience, especially for non-technical users exploring business intelligence through natural language.
+
 ---
