@@ -112,9 +112,6 @@ Satisfaction: {doc['satisfaction']}
     - Compare satisfaction scores between products.
     - How does customer satisfaction vary by region?
 
-    **Customer Demographics**
-    - Which region has the youngest customers?
-    - How do male and female customers differ in purchases?
     """)
     
     # Input query displayed to the user
