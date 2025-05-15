@@ -73,10 +73,15 @@ Satisfaction: {doc['satisfaction']}
         text = f"There were {count} purchases of {product}."
         documents.append(Document(page_content=text))
 
-    # Optional: Age bucket summaries
-    age_bins = [18, 25, 35, 45, 55, 65, 75]
-    age_labels = ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
-    df['Age_Group'] = pd.cut(df['Customer_Age'], bins=age_bins + [df['Customer_Age'].max()], labels=age_labels, right=False)
+    # Age bucket summaries
+    max_age = df['Customer_Age'].max()
+    if max_age <= 75:
+        age_bins = [18, 25, 35, 45, 55, 65, 75, 100]  # extend to catch any age
+    else:
+        age_bins = [18, 25, 35, 45, 55, 65, 75, max_age + 5]
+   
+    age_labels = ["18-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75+"]
+    df['Age_Group'] = pd.cut(df['Customer_Age'], bins=age_bins, labels=age_labels, right=False)
     age_counts = df['Age_Group'].value_counts().sort_index()
 
     for group, count in age_counts.items():
