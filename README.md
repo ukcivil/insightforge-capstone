@@ -160,5 +160,6 @@ If a match is found, users receive:
 > “This type of question may not be fully supported by the dataset or summaries.”
 
 #### Source Data Transparency
-An optional radio button feature was added to allow users view the actual data chunks the AI used to form its response. This adds transparency and trust to the insights being generated.
+An optional radio button feature was added to the app to allow users to view the acutal data chunks the AI used to form the response.  This adds transparency and trust to the insights being generated
+
 ---
