@@ -92,12 +92,6 @@ Satisfaction: {doc['satisfaction']}
 
     if user_query:
         result = qa_chain.invoke({"query": user_query})
-        st.subheader("AI Insight")
-        st.write(result["result"])
-
-
-
-        result = qa_chain.invoke({"query": user_query})
         #  Show AI response
         st.subheader(" AI Insight")
         st.write(result["result"])
