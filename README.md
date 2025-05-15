@@ -25,7 +25,7 @@ You can ask questions like:
 |--------------------|---------------------------------------------------|
 | `app.py`           | The main application code (what Streamlit runs)   |
 | `sales_data.csv`   | Sample data provided for testing the app          |
-| `requirements.txt` | List of packages needing installation             |
+| `requirements.txt` | List of packages needing installation to achieve results            |
 | `README.md`        | This file – explains the project and how to use it|
 | `.gitignore`       | Used to protect my key                            |
 | `.devcontainer/`   | Extra config for VS Code (optional)               |
