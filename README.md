@@ -39,7 +39,7 @@ You can ask questions like:
 Open your terminal and type:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/insightforge-capstone.git
+git clone https://github.com/ukcivil/insightforge-capstone.git
 cd insightforge-capstone
 ```
 
