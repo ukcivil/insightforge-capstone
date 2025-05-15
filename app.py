@@ -87,8 +87,37 @@ Satisfaction: {doc['satisfaction']}
     llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
 
+    # FAQ list provided to user for further guidance.
+    
+    with st.expander("Suggested Typical Questions and Data Analysis Request"):
+    st.markdown("""
+    ### Sales Trends
+    - What is the overall sales trend over time?
+    - Compare monthly sales across 2023.
+    - Was there a seasonal spike in 2024?
+
+    ### Product Performance
+    - Compare total sales for Widget A and Widget B.
+    - Which product had the highest sales in 2023?
+    - How did Widget C perform across regions?
+
+    ### Regional Insights
+    - Which region had the highest total sales?
+    - Compare Widget A and Widget B sales by region.
+    - What is the average customer age in the South?
+
+    ### Customer Satisfaction
+    - What is the average satisfaction score for Widget B?
+    - Compare satisfaction scores between products.
+    - How does customer satisfaction vary by region?
+
+    ###  Customer Demographics
+    - Which region has the youngest customers?
+    - How do male and female customers differ in purchases?
+    """)
+    
     # Input query displayed to the user
-    user_query = st.text_input("💬 Ask a business question:")
+    user_query = st.text_input("Ask a business question or request data analysis:")
 
     if user_query:
         result = qa_chain.invoke({"query": user_query})
