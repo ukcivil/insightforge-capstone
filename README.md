@@ -34,14 +34,14 @@ InsightForge is a Streamlit-based capstone project that enables non-technical us
 git clone https://github.com/YOUR-USERNAME/insightforge-capstone.git
 cd insightforge-capstone
 
-2. Install Requirements
+### 2. Install Requirements
 Use a virtual environment or run:
 pip install -r requirements.txt
 
-3. Launch the App
+### 3. Launch the App
 streamlit run app.py
 
-Example Questions to Try
+### Example Questions to Try
 "Compare Widget A and Widget B sales by region"
 
 "Show the monthly sales trend over time"
@@ -50,19 +50,14 @@ Example Questions to Try
 
 "How do customer ages vary by region?"
 
-Downloadable Logs
+### Downloadable Logs
 Each user interaction is logged to chat_log.txt, which can be downloaded via the app interface.
 
-Submission Info
+### Submission Info
 This project meets all capstone requirements for:
-
 Data insight generation
-
 Prompt-based natural language interface
-
 Visualizations
-
 Deployment-ready business tool
-
 Built using:
 OpenAI · LangChain · Streamlit · Matplotlib · Seaborn
