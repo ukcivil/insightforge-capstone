@@ -91,27 +91,28 @@ Satisfaction: {doc['satisfaction']}
     
     with st.expander("Suggested Typical Questions and Data Analysis Request"):
         st.markdown("""
-    ### Sales Trends
+    ## Suggested Typical Questions and Data Analysis Request
+    **Sales Trends**
     - What is the overall sales trend over time?
     - Compare monthly sales across 2023.
     - Was there a seasonal spike in 2024?
 
-    ### Product Performance
+    **Product Performance**
     - Compare total sales for Widget A and Widget B.
     - Which product had the highest sales in 2023?
     - How did Widget C perform across regions?
 
-    ### Regional Insights
+    **Regional Insights**
     - Which region had the highest total sales?
     - Compare Widget A and Widget B sales by region.
     - What is the average customer age in the South?
 
-    ### Customer Satisfaction
+    **Customer Satisfaction**
     - What is the average satisfaction score for Widget B?
     - Compare satisfaction scores between products.
     - How does customer satisfaction vary by region?
 
-    ###  Customer Demographics
+    **Customer Demographics**
     - Which region has the youngest customers?
     - How do male and female customers differ in purchases?
     """)
