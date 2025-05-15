@@ -23,7 +23,7 @@ uploaded_file = st.sidebar.file_uploader("Upload Sales Data CSV", type="csv")
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
-    st.success("✅ Data Loaded")
+    st.success("Data Loaded")
 
     # Prepares base documents from raw data
     df['Date'] = pd.to_datetime(df['Date'])
@@ -92,9 +92,38 @@ Satisfaction: {doc['satisfaction']}
 
     if user_query:
         result = qa_chain.invoke({"query": user_query})
+        st.subheader("AI Insight")
+        st.write(result["result"])
+
+
+
+        result = qa_chain.invoke({"query": user_query})
+        # 🧠 Show AI response
         st.subheader("🧠 AI Insight")
         st.write(result["result"])
 
+        # 🛡️ Warn if no documents were retrieved
+        if not result.get("source_documents"):
+            st.warning("⚠️ I couldn’t find enough data to confidently answer that question. Try rewording it or check if the dataset includes that info.")
+
+        # 🚫 Flag questions that might require unsupported logic
+        unsupported_patterns = [
+            "average sales per transaction",
+            "total transactions in",
+            "most recent sale",
+            "top customer",
+            "sales in the last",  # time-based filters
+            "profit",             # not in dataset
+        ]
+
+        if any(p in user_query.lower() for p in unsupported_patterns):
+            st.warning("🚫 This type of question may not be fully supported by the dataset or summaries. Results could be limited.")
+
+        # 🔍 Optional: Let user view the source data used for the answer
+        if st.checkbox("📄 Show retrieved data"):
+            st.markdown("These are the data pieces the AI used to generate your answer:")
+            for doc in result["source_documents"]:
+                st.markdown(f"• {doc.page_content.strip()}")
         # Creates the interaction log
         with open("chat_log.txt", "a") as log_file:
             log_file.write(f"Time: {datetime.now().isoformat()}\n")
@@ -132,4 +161,4 @@ else:
 # Creates the button allowing download of the interaction log
 if os.path.exists("chat_log.txt"):
     with open("chat_log.txt", "r") as log_file:
-        st.download_button("📄 Download Interaction Log", log_file, file_name="chat_log.txt")
+        st.download_button("Download Interaction Log", log_file, file_name="chat_log.txt")
