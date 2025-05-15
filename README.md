@@ -1,10 +1,10 @@
-# 📊 InsightForge – AI-Powered Business Intelligence Assistant
+#  InsightForge – AI-Powered Business Intelligence Assistant
 
 InsightForge is a Streamlit-based capstone project that enables non-technical users to derive actionable insights from business data using natural language. Powered by OpenAI's GPT and LangChain’s Retrieval-Augmented Generation (RAG), this tool allows interactive exploration of sales trends, product performance, customer satisfaction, and demographic insights.
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Upload structured CSV sales data
 - Ask business questions in natural language
@@ -14,7 +14,7 @@ InsightForge is a Streamlit-based capstone project that enables non-technical us
 
 ---
 
-## 📂 File Overview
+##  File Overview
 
 | File               | Description                                     |
 |--------------------|-------------------------------------------------|
@@ -27,7 +27,7 @@ InsightForge is a Streamlit-based capstone project that enables non-technical us
 
 ---
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -52,7 +52,7 @@ streamlit run app.py
 
 ---
 
-## 🧠 Example Questions to Try
+##  Example Questions to Try
 
 - Compare Widget A and Widget B sales by region
 - Show the monthly sales trend over time
@@ -61,13 +61,13 @@ streamlit run app.py
 
 ---
 
-## 📤 Downloadable Logs
+##  Downloadable Logs
 
 Each user interaction is logged to `chat_log.txt`, which can be downloaded via the app interface.
 
 ---
 
-## 🧾 Submission Info
+##  Submission Info
 
 This project meets all capstone requirements for:
 
@@ -77,6 +77,6 @@ This project meets all capstone requirements for:
 - Deployment-ready business tool
 
 Built using:  
-🧠 OpenAI · 🔍 LangChain · 🖼️ Streamlit · 📈 Matplotlib · 📊 Seaborn
+OpenAI · LangChain · Streamlit · Matplotlib · Seaborn
 
 ---
