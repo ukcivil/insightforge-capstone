@@ -98,15 +98,15 @@ Satisfaction: {doc['satisfaction']}
 
 
         result = qa_chain.invoke({"query": user_query})
-        # 🧠 Show AI response
-        st.subheader("🧠 AI Insight")
+        #  Show AI response
+        st.subheader(" AI Insight")
         st.write(result["result"])
 
-        # 🛡️ Warn if no documents were retrieved
+        # Warn if no documents were retrieved
         if not result.get("source_documents"):
-            st.warning("⚠️ I couldn’t find enough data to confidently answer that question. Try rewording it or check if the dataset includes that info.")
+            st.warning("I couldn’t find enough data to confidently answer that question. Try rewording it or check if the dataset includes that info.")
 
-        # 🚫 Flag questions that might require unsupported logic
+        # Flag questions that might require unsupported logic
         unsupported_patterns = [
             "average sales per transaction",
             "total transactions in",
@@ -117,10 +117,10 @@ Satisfaction: {doc['satisfaction']}
         ]
 
         if any(p in user_query.lower() for p in unsupported_patterns):
-            st.warning("🚫 This type of question may not be fully supported by the dataset or summaries. Results could be limited.")
+            st.warning("This type of question may not be fully supported by the dataset or summaries. Results could be limited.")
 
-        # 🔍 Optional: Let user view the source data used for the answer
-        if st.checkbox("📄 Show retrieved data"):
+        # Optional: Let user view the source data used for the answer
+        if st.checkbox("Show retrieved data"):
             st.markdown("These are the data pieces the AI used to generate your answer:")
             for doc in result["source_documents"]:
                 st.markdown(f"• {doc.page_content.strip()}")
