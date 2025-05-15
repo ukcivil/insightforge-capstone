@@ -27,7 +27,7 @@ You can ask questions like:
 | `sales_data.csv`   | Sample data provided for testing the app          |
 | `requirements.txt` | List of packages needing installation             |
 | `README.md`        | This file – explains the project and how to use it|
-| `.gitignore`       | Tells Git what files to skip (like logs)          |
+| `.gitignore`       | Used to protect my key                            |
 | `.devcontainer/`   | Extra config for VS Code (optional)               |
 
 ---
