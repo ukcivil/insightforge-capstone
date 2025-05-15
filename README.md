@@ -78,9 +78,9 @@ Every time you ask a question, it gets saved in a file called `chat_log.txt`. Yo
 
 ---
 
-## 🚀 How This App Was Built and Deployed
+## How The App Was Built and Deployed
 
-### 🧪 Step 1: Developed in Google Colab
+### Step 1: Initially Written and Tested in Google Colab
 
 The project started as a Jupyter-style notebook in Google Colab. This allowed quick testing of:
 - Data loading and transformation using `pandas`
@@ -90,7 +90,7 @@ The project started as a Jupyter-style notebook in Google Colab. This allowed qu
 
 ---
 
-### 🗂️ Step 2: Moved to GitHub for Version Control
+### Step 2: Moved to GitHub to allow more version control 
 
 After testing, the code was moved into a standalone script (`app.py`) and pushed to a GitHub repository. This made it easy to:
 - Organize files (data, scripts, logs)
@@ -99,31 +99,24 @@ After testing, the code was moved into a standalone script (`app.py`) and pushed
 
 ---
 
-### 🌐 Step 3: Deployed with Streamlit Cloud
+### 🌐 Step 3: Deployed with Streamlit Cloud to Allow for creating a Web interface that anyone can use.
 
-To make the app usable by anyone:
 1. The GitHub repo was connected to [Streamlit Cloud](https://streamlit.io/cloud)
-2. Streamlit pulled the `app.py` file and required libraries from `requirements.txt`
+2. Streamlit pulled my code stored in the `app.py` file and required libraries from `requirements.txt`
 3. The app was deployed as a live website
 
 This process made it possible to share the project as a web app where users can:
 - Upload a CSV
 - Ask questions
-- View smart insights and charts instantly
+- View results of questions and visuals if relevant instantly
 
 ---
 
-
-
-
-
-
----
 
 ##  What Tools Were Used
 
 This app was built with:
-- **OpenAI GPT-3.5** – helps with proper answers
+- **OpenAI GPT-3.5** – helps with intelligent answers
 - **LangChain** – allows searching through the data
 - **Streamlit** – allows for a web interface
 - **Pandas / Seaborn / Matplotlib** – for charts and data handling
