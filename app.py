@@ -89,9 +89,9 @@ Satisfaction: {doc['satisfaction']}
 
     # FAQ list provided to user for further guidance.
     
-    with st.expander("Suggested Typical Questions and Data Analysis Request"):
+    with st.expander("Suggested Typical Questions and Data Analysis Requests"):
         st.markdown("""
-    ## Suggested Typical Questions and Data Analysis Request
+    ## Suggested Typical Questions and Data Analysis Requests
     **Sales Trends**
     - What is the overall sales trend over time?
     - Compare monthly sales across 2023.
