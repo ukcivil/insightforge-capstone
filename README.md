@@ -132,7 +132,7 @@ This app was built with:
 ## Additional Features added to Enhance User Experience
 
 ### Suggested Questions and Queries Panel
-To help users interact effectively with the assistant, the app includes a collapsible **Suggested Questions and Analysis Commands** panel. It displays example queries based on real summaries and insights generated from the dataset.
+To help users interact effectively with the assistant, the app includes a collapsible **Suggested Questions and Analysis Commands** panel. It displays example queries based on real summaries and insights generated from the dataset and helps guide users toward queries supported by the RAG which will improve success rates and clarity.
 
 **Topics include:**
 - Sales trends
@@ -140,7 +140,7 @@ To help users interact effectively with the assistant, the app includes a collap
 - Regional satisfaction scores
 - Customer Demographics
 
-This feature helps guide users toward supported queries, improving success rates and clarity.
+
 ---
 ### Inaccuracy Prevention Measures
 Several built-in safeguards were implemented to prevent the app from returning misleading or unsupported answers:
