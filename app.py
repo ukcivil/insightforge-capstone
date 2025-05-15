@@ -55,6 +55,34 @@ Satisfaction: {doc['satisfaction']}
 
     # Add summaries to allow for more complete insight coverage
 
+    # Gender-based counts
+    gender_counts = df['Customer_Gender'].value_counts()
+    for gender, count in gender_counts.items():
+        text = f"There were {count} purchases by {gender.lower()} customers."
+        documents.append(Document(page_content=text))
+
+    # Region-based counts
+    region_counts = df['Region'].value_counts()
+    for region, count in region_counts.items():
+        text = f"There were {count} sales in the {region} region."
+        documents.append(Document(page_content=text))
+
+    # Product-based counts
+    product_counts = df['Product'].value_counts()
+    for product, count in product_counts.items():
+        text = f"There were {count} purchases of {product}."
+        documents.append(Document(page_content=text))
+
+    # Optional: Age bucket summaries
+    age_bins = [18, 25, 35, 45, 55, 65, 75]
+    age_labels = ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
+    df['Age_Group'] = pd.cut(df['Customer_Age'], bins=age_bins + [df['Customer_Age'].max()], labels=age_labels, right=False)
+    age_counts = df['Age_Group'].value_counts().sort_index()
+
+    for group, count in age_counts.items():
+        text = f"There were {count} purchases from customers aged {group}."
+        documents.append(Document(page_content=text))
+    
     # Product by region
     prod_region = df.groupby(['Product', 'Region'])['Sales'].sum().reset_index()
     for _, row in prod_region.iterrows():
