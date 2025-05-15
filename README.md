@@ -1,6 +1,6 @@
 #  InsightForge – AI-Powered Business Intelligence Assistant
 
-**InsightForge** is a simple tool built with **Streamlit** that helps you explore your sales data using **AI**. It uses **ChatGPT (GPT-3.5)** and **LangChain** to answer your questions, create summaries, and show charts — all from a CSV file you upload.
+**InsightForge** is a tool built with **Streamlit** that allows the user to explore provided sales data in CSV format using **AI**. It uses **ChatGPT (GPT-3.5)** and **LangChain** to answer questions, create summaries, and generate charts (where relevant) — all from the provided CSV file uploaded into the interface.  The tool also provides a log of questions and answers that can be easily downloaded from within the app to show previous questions and answers.
 
 You can ask questions like:
 - “How are sales trending over time?”
@@ -11,9 +11,9 @@ You can ask questions like:
 
 ##  What This App Can Do
 
-- Upload a sales CSV file
-- Ask questions in plain English
-- Get helpful answers powered by AI
+- Upload a provided sales CSV file
+- Ask questions about the data in English
+- Get helpful answers powered by AI and other tools
 - See useful charts when relevant
 - Download a log of your questions and answers
 
@@ -23,9 +23,9 @@ You can ask questions like:
 
 | File Name          | What It Does                                      |
 |--------------------|---------------------------------------------------|
-| `app.py`           | The main app code (what Streamlit runs)          |
-| `sales_data.csv`   | Sample data for testing the app                   |
-| `requirements.txt` | List of packages you need to install              |
+| `app.py`           | The main application code (what Streamlit runs)   |
+| `sales_data.csv`   | Sample data provided for testing the app          |
+| `requirements.txt` | List of packages needing installation             |
 | `README.md`        | This file – explains the project and how to use it|
 | `.gitignore`       | Tells Git what files to skip (like logs)          |
 | `.devcontainer/`   | Extra config for VS Code (optional)               |
