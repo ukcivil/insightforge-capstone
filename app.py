@@ -1,4 +1,4 @@
-# 📦 Imports
+# All Import Commands needed for Functionality
 import streamlit as st
 import pandas as pd
 from datetime import datetime
@@ -11,21 +11,21 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.docstore.document import Document
 
-# 🔐 Secure API Key from Streamlit secrets
+# Uses Streamlit secrets to secure my API key
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
-# ⚙️ Page setup
-st.set_page_config(page_title="InsightForge BI Assistant", layout="wide")
-st.title("📊 InsightForge – AI-Powered Business Intelligence Assistant")
+# Page configuration and setup
+st.set_page_config(page_title="InsightForge Business Intelligence (BI) Assistant", layout="wide")
+st.title("InsightForge – AI-Powered Business Intelligence Assistant")
 
-# 📁 Upload CSV
+# Allows upload of CSV file
 uploaded_file = st.sidebar.file_uploader("Upload Sales Data CSV", type="csv")
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     st.success("✅ Data Loaded")
 
-    # 🧱 Prepare base documents from raw data
+    # Prepares base documents from raw data
     df['Date'] = pd.to_datetime(df['Date'])
     df['Month'] = df['Date'].dt.to_period('M').astype(str)
 
@@ -53,7 +53,7 @@ Satisfaction: {doc['satisfaction']}
 """
         documents.append(Document(page_content=text))
 
-    # ➕ Add summaries for full insight coverage
+    # Add summaries to allow for more complete insight coverage
 
     # Product by region
     prod_region = df.groupby(['Product', 'Region'])['Sales'].sum().reset_index()
@@ -80,14 +80,14 @@ Satisfaction: {doc['satisfaction']}
     for _, row in monthly.iterrows():
         documents.append(Document(page_content=f"Monthly Summary - {row['Month']}: Total Sales = {row['Sales']}"))
 
-    # 🔗 RAG system
+    # RAG system setup
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(documents, embeddings)
     retriever = vectorstore.as_retriever()
     llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
 
-    # 💬 Input query
+    # Input query displayed to the user
     user_query = st.text_input("💬 Ask a business question:")
 
     if user_query:
@@ -95,14 +95,14 @@ Satisfaction: {doc['satisfaction']}
         st.subheader("🧠 AI Insight")
         st.write(result["result"])
 
-        # 🪵 Log interaction
+        # Creates the interaction log
         with open("chat_log.txt", "a") as log_file:
             log_file.write(f"Time: {datetime.now().isoformat()}\n")
             log_file.write(f"User Query: {user_query}\n")
             log_file.write(f"AI Response: {result['result']}\n")
             log_file.write("-" * 50 + "\n")
 
-        # 📊 Minimal visual triggers
+        # Reduces irrelevant visuals
         q = user_query.lower()
 
         if "sales trend" in q or "monthly sales" in q or "over time" in q:
@@ -125,11 +125,11 @@ Satisfaction: {doc['satisfaction']}
             ax.set_title('Customer Satisfaction Distribution')
             st.pyplot(fig)
 
-# ⚠️ Prompt to upload file
+# Prompt to upload file as a CSV file
 else:
     st.warning("Please upload a CSV file to begin.")
 
-# 📄 Download interaction log
+# Creates the button allowing download of the interaction log
 if os.path.exists("chat_log.txt"):
     with open("chat_log.txt", "r") as log_file:
         st.download_button("📄 Download Interaction Log", log_file, file_name="chat_log.txt")
