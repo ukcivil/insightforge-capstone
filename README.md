@@ -138,6 +138,7 @@ To help users interact effectively with the assistant, the app includes a collap
 - Sales trends
 - Product performance
 - Regional satisfaction scores
+- Customer Demographics
 This feature helps guide users toward supported queries, improving success rates and clarity.
 ---
 ### Inaccuracy Prevention Measures
