@@ -1,10 +1,10 @@
-# InsightForge – AI-Powered Business Intelligence Assistant
+# 📊 InsightForge – AI-Powered Business Intelligence Assistant
 
 InsightForge is a Streamlit-based capstone project that enables non-technical users to derive actionable insights from business data using natural language. Powered by OpenAI's GPT and LangChain’s Retrieval-Augmented Generation (RAG), this tool allows interactive exploration of sales trends, product performance, customer satisfaction, and demographic insights.
 
 ---
 
-## Features
+## 🚀 Features
 
 - Upload structured CSV sales data
 - Ask business questions in natural language
@@ -14,7 +14,7 @@ InsightForge is a Streamlit-based capstone project that enables non-technical us
 
 ---
 
-## File Overview
+## 📂 File Overview
 
 | File               | Description                                     |
 |--------------------|-------------------------------------------------|
@@ -27,37 +27,56 @@ InsightForge is a Streamlit-based capstone project that enables non-technical us
 
 ---
 
-## Setup Instructions
+## 🛠️ Setup Instructions
 
-##  1. Clone the Repository
+### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/YOUR-USERNAME/insightforge-capstone.git
 cd insightforge-capstone
+```
 
-## 2. Install Requirements
+### 2. Install Requirements
+
 Use a virtual environment or run:
+
+```bash
 pip install -r requirements.txt
+```
 
-## 3. Launch the App
+### 3. Launch the App
+
+```bash
 streamlit run app.py
+```
 
-## Example Questions to Try
-"Compare Widget A and Widget B sales by region"
+---
 
-"Show the monthly sales trend over time"
+## 🧠 Example Questions to Try
 
-"Which product has the highest customer satisfaction?"
+- Compare Widget A and Widget B sales by region
+- Show the monthly sales trend over time
+- Which product has the highest customer satisfaction?
+- How do customer ages vary by region?
 
-"How do customer ages vary by region?"
+---
 
-## Downloadable Logs
-Each user interaction is logged to chat_log.txt, which can be downloaded via the app interface.
+## 📤 Downloadable Logs
 
-## Submission Info
+Each user interaction is logged to `chat_log.txt`, which can be downloaded via the app interface.
+
+---
+
+## 🧾 Submission Info
+
 This project meets all capstone requirements for:
-Data insight generation
-Prompt-based natural language interface
-Visualizations
-Deployment-ready business tool
-Built using:
-OpenAI · LangChain · Streamlit · Matplotlib · Seaborn
+
+- Data insight generation
+- Prompt-based natural language interface
+- Visualizations
+- Deployment-ready business tool
+
+Built using:  
+🧠 OpenAI · 🔍 LangChain · 🖼️ Streamlit · 📈 Matplotlib · 📊 Seaborn
+
+---
